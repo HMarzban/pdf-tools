@@ -1,0 +1,33 @@
+{
+  "name": "pdf-tools",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/HMarzban/pdf-tools.git",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon ./index.js  NODE_ENV=development"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "chalk": "^2.4.2",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "express-zip": "^2.0.1",
+    "fs-extra": "^7.0.1",
+    "g": "^2.0.1",
+    "ip": "^1.1.5",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.1",
+    "nodemon": "^1.18.10",
+    "officegen": "^0.4.7",
+    "pdf-parse": "^1.1.1",
+    "truncate-utf8-bytes": "^1.0.2"
+  },
+  "devDependencies": {
+    "eslint": "5.3.0",
+    "eslint-config-airbnb": "17.1.0",
+    "eslint-config-prettier": "^4.0.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "prettier": "^1.16.4"
+  }
+}
