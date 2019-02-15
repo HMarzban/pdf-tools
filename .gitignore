@@ -1,9 +1,0 @@
-#Client
-client/node_modules
-client/dist
-
-#Server
-node_modules
-
-#Uploaded Files
-server/tmp/
