@@ -1,4 +1,4 @@
-const offic = require('../../../service/pdf-office');
+const pdf = require('../../../service/pdf-tools');
 
 const WORD_controller = async (req, res) => {
   const converted = req['SConfig'].convertURL;
@@ -6,7 +6,7 @@ const WORD_controller = async (req, res) => {
   const inputFile = req.file.path;
   const outputFile = converted;
 
-  await offic.toWORD(inputFile, outputFile);
+  await pdf.ToWORD(inputFile, outputFile);
 
   res.send({
     msg: 'success upload',
@@ -23,7 +23,7 @@ const EXCEL_controller = async (req, res) => {
   const inputFile = req.file.path;
   const outputFile = `${converted}/${req.file.filename}`;
 
-  await offic.toEXCEL(inputFile, outputFile);
+  await pdf.toEXCEL(inputFile, outputFile);
 
   res.send({
     msg: 'success upload',
@@ -39,7 +39,7 @@ const PPT_controller = async (req, res) => {
 
   const inputFile = req.file.path;
   const outputFile = `${converted}/${req.file.filename.replace(/\.[^/.]+$/, '')}.pptx`;
-  await offic.toPPT(inputFile, outputFile);
+  await pdf.ToPPT(inputFile, outputFile);
 
   res.send({
     msg: 'success upload',

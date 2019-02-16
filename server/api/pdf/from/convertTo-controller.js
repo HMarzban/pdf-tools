@@ -1,4 +1,4 @@
-const { EXCEL_to_PDF, JPG_to_PDF, PPT_to_PDF, WORD_to_PDF } = require('../../../service/from-pdf');
+const pdf = require('../../../service/pdf-tools');
 
 const WORD_controller = async (req, res) => {
   const converted = req['SConfig'].convertURL;
@@ -6,7 +6,7 @@ const WORD_controller = async (req, res) => {
   const inputFile = req.file.path;
   const outputFile = `${converted}/${req.file.filename}`;
 
-  await WORD_to_PDF(inputFile, outputFile);
+  await pdf.FromWORD(inputFile, outputFile);
 
   res.send({
     msg: 'success upload',
@@ -23,7 +23,7 @@ const EXCEL_controller = async (req, res) => {
   const inputFile = req.file.path;
   const outputFile = `${converted}/${req.file.filename}`;
 
-  await EXCEL_to_PDF(inputFile, outputFile);
+  await pdf.FromEXCEL(inputFile, outputFile);
 
   res.send({
     msg: 'success upload',
@@ -40,7 +40,7 @@ const PPT_controller = async (req, res) => {
   const inputFile = req.file.path;
   const outputFile = `${converted}/${req.file.filename}`;
 
-  await PPT_to_PDF(inputFile, outputFile);
+  await pdf.FromPPT(inputFile, outputFile);
 
   res.send({
     msg: 'success upload',
@@ -61,10 +61,8 @@ const JPG_controller = async (req, res) => {
     inputFile += ` ${file.path} `;
   }
 
-  console.log(inputFile);
-
   try {
-    await JPG_to_PDF(inputFile, outputFile);
+    await pdf.FromJPG(inputFile, outputFile);
   } catch (error) {
     console.log(error);
   }

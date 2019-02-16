@@ -1,6 +1,5 @@
-const pdf = require('../../../service/pdf-tools');
 const zip = require('../../../service/zip-files');
-const pdfDetails = require('../../../service/pdf-details');
+const pdf = require('../../../service/pdf-tools');
 
 const PNG_controller = async (req, res) => {
   // PNG file format
@@ -34,7 +33,7 @@ const PNG_controller = async (req, res) => {
 
   const converted = req['SConfig'].convertURL;
 
-  let pdfCountPages = await pdfDetails(`${req.file.path}`);
+  let pdfCountPages = await pdf.details(`${req.file.path}`);
   pdfCountPages = pdfCountPages['pageCount'];
 
   const Device = 'png16m';
@@ -59,7 +58,7 @@ const JPG_controller = async (req, res) => {
 
   const converted = req['SConfig'].convertURL;
 
-  let pdfCountPages = await pdfDetails(`${req.file.path}`);
+  let pdfCountPages = await pdf.details(`${req.file.path}`);
   pdfCountPages = pdfCountPages['pageCount'];
 
   const Device = 'jpeg';
@@ -88,7 +87,7 @@ const BMP_controller = async (req, res) => {
 
   const converted = req['SConfig'].convertURL;
 
-  let pdfCountPages = await pdfDetails(`${req.file.path}`);
+  let pdfCountPages = await pdf.details(`${req.file.path}`);
   pdfCountPages = pdfCountPages['pageCount'];
 
   // "bmpmono", "bmpgray", "bmpsep1", "bmpsep8", "bmp16", "bmp256", "bmp16m", "bmp32b"
@@ -115,7 +114,7 @@ const PSD_controller = async (req, res) => {
 
   const converted = req['SConfig'].convertURL;
 
-  let pdfCountPages = await pdfDetails(`${req.file.path}`);
+  let pdfCountPages = await pdf.details(`${req.file.path}`);
   pdfCountPages = pdfCountPages['pageCount'];
 
   // "psdcmyk", "psdrgb"
@@ -142,7 +141,7 @@ const EPS_controller = async (req, res) => {
 
   const converted = req['SConfig'].convertURL;
 
-  let pdfCountPages = await pdfDetails(`${req.file.path}`);
+  let pdfCountPages = await pdf.details(`${req.file.path}`);
   pdfCountPages = pdfCountPages['pageCount'];
 
   // "psdcmyk", "psdrgb"
@@ -170,7 +169,7 @@ const TXT_controller = async (req, res) => {
 
   const converted = req['SConfig'].convertURL;
 
-  let pdfCountPages = await pdfDetails(`${req.file.path}`);
+  let pdfCountPages = await pdf.details(`${req.file.path}`);
   pdfCountPages = pdfCountPages['pageCount'];
 
   // "psdcmyk", "psdrgb"
@@ -191,7 +190,7 @@ const TXT_controller = async (req, res) => {
 }; // Function: BMP_controller()
 
 
-const convert = (res, req, data) => {
+const convert = async (res, req, data) => {
 
 
   const RES_convert = await pdf.convert2img(

@@ -1,4 +1,4 @@
-const { encrypt, decrypt } = require('../../../service/pdf-security');
+const pdf = require('../../../service/pdf-tools');
 
 const ENCRYPTcontroller = async (req, res) => {
   const converted = req['SConfig'].convertURL;
@@ -7,7 +7,7 @@ const ENCRYPTcontroller = async (req, res) => {
   const outputFile = `${converted}/${req.file.filename}`;
   const password = req.body.password;
 
-  const response_encrypt = await encrypt(inputFile, outputFile, password);
+  const response_encrypt = await pdf.encrypt(inputFile, outputFile, password);
 
   res.send({
     msg: 'success upload',
@@ -23,7 +23,7 @@ const DECRYPTcontroller = async (req, res) => {
   const password = req.body.password;
   const keyLength = req.body.keyLength || '128';
 
-  const response_encrypt = await decrypt(inputFile, outputFile, password, keyLength);
+  const response_encrypt = await pdf.decrypt(inputFile, outputFile, password, keyLength);
 
   res.send({
     msg: 'success upload',

@@ -1,11 +1,11 @@
-const pdfDetails = require('../../../service/pdf-details');
+
 const pdf = require('../../../service/pdf-tools');
 
 module.exports = async (req, res) => {
 
   const converted = req['SConfig'].convertURL;
 
-  const pdfInfo = await pdfDetails(`${req.file.path}`);
+  const pdfInfo = await pdf.details(`${req.file.path}`);
 
   const inputFile = req.file.path;
   const outputFile = `${converted}/${req.file.filename.replace(/\.[^/.]+$/, '')}`;

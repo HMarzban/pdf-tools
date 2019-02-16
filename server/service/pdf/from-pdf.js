@@ -1,5 +1,10 @@
-const { ExecuteCommand } = require('../utils/command');
+const { ExecuteCommand } = require('../../utils/command');
 
+/**
+ * Convert word.docx to pdf file
+ * @param {String} input 
+ * @param {String} output 
+ */
 const WORD_to_PDF = (input, output) => {
   const dira = output.split('/');
   const fileName = output.split('/')[dira.length - 1];
@@ -21,6 +26,11 @@ const WORD_to_PDF = (input, output) => {
 
 }; // @Function: WORD_to_PDF()
 
+/**
+ * Convert excel.exls to pdf file
+ * @param {String} input 
+ * @param {String} output 
+ */
 const EXCEL_to_PDF = (input, output) => {
   const dira = output.split('/');
   const fileName = output.split('/')[dira.length - 1];
@@ -42,6 +52,11 @@ const EXCEL_to_PDF = (input, output) => {
 
 }; // @Function: EXCEL_to_PDF()
 
+/**
+ * Convert powerpoint.ppt tp pdf file
+ * @param {String} input 
+ * @param {String} output 
+ */
 const PPT_to_PDF = (input, output) => {
   const dira = output.split('/');
   const fileName = output.split('/')[dira.length - 1];
@@ -63,6 +78,11 @@ const PPT_to_PDF = (input, output) => {
 
 }; // @Function: PPT_to_PDF()
 
+/**
+ * Convert images to pdf file
+ * @param {String} input 
+ * @param {String} output 
+ */
 const JPG_to_PDF = (input, output) => {
 
   // ex: convert <input.png> <output.pdf>

@@ -1,12 +1,16 @@
 const officegen = require('officegen');
 const fs = require('fs-extra');
-const { ExecuteCommand } = require('../utils/command');
-const pdfDetails = require('./pdf-details');
-const pdf = require('./pdf-tools');
+const { ExecuteCommand } = require('../../utils/command');
+const pdf = require('../pdf-tools');
 
-const office = {};
 
-office.toWORD = (input, output) => {
+
+/**
+ * Convert fileName.pdf to fileName.docx
+ * @param {String} input
+ * @param {String} output
+ */
+const toWORD = (input, output) => {
 
   // NOTE: output must just directory! file name chose form input.
 
@@ -24,7 +28,12 @@ office.toWORD = (input, output) => {
 
 }; // @ Function: office.toWORD()
 
-office.toPPT = async (input, output) => {
+/**
+ * Convert fileName.pdf to fileName.ppt
+ * @param {String} input
+ * @param {String} output
+ */
+const toPPT = async (input, output) => {
   return new Promise(async (resolve, reject) => {
     const pptx = officegen('pptx');
     const wrapeOutputFiles = [];
@@ -43,7 +52,7 @@ office.toPPT = async (input, output) => {
       reject(err);
     });
 
-    let pdfCountPages = await pdfDetails(input);
+    let pdfCountPages = await pdf.details(input);
     pdfCountPages = pdfCountPages['pageCount'];
 
     const Device = 'png16m';
@@ -79,7 +88,12 @@ office.toPPT = async (input, output) => {
   }); //Resolve
 }; // @ Function: office.toPPT()
 
-office.toEXCEL = (input, output) => {
+/**
+ * Convert fileName.pdf to fileName.exls
+ * @param {String} input
+ * @param {String} output
+ */
+const toEXCEL = (input, output) => {
   return new Promise(async (resolve, reject) => {
     // first convert to text then convert to excel
 
@@ -121,7 +135,11 @@ office.toEXCEL = (input, output) => {
 }; // @ Function: office.EXCEL()
 
 
-
+/**
+ * Create powerpoint page and set image center of page
+ * @param {Object} pptx
+ * @param {Array} imageList
+ */
 function generateImageSlides(pptx, imageList) {
   return new Promise(resolve => {
     pptx.setSlideSize(595, 842, 'A4');
@@ -135,4 +153,8 @@ function generateImageSlides(pptx, imageList) {
 } // @Function: generateImageSlides()
 
 
-module.exports = office;
+module.exports = {
+  toWORD,
+  toPPT,
+  toEXCEL
+};

@@ -6,4 +6,5 @@ client/dist
 node_modules
 
 #Uploaded Files
-server/tmp/
+server/tmp/convert
+server/tmp/upload

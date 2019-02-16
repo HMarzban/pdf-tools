@@ -1,5 +1,12 @@
-const { ExecuteCommand } = require('../utils/command');
+const { ExecuteCommand } = require('../../utils/command');
 
+/**
+ * Encrypt pdf file.
+ * @param {input} input 
+ * @param {input} output 
+ * @param {input} password 
+ * @param {input} keyLength 
+ */
 const encrypt = (input, output, password, keyLength = '128' || '40' || '256') => {
   if (!input) throw Error('Inputs is not set!');
 
@@ -21,6 +28,12 @@ const encrypt = (input, output, password, keyLength = '128' || '40' || '256') =>
   
 }; // @Function: encrypt()
 
+/**
+ * Decrypt pdf file
+ * @param {input} input 
+ * @param {input} output 
+ * @param {input} password 
+ */
 const decrypt = (input, output, password) => {
 
   if (!input) throw Error('Inputs is not set!');
@@ -32,7 +45,7 @@ const decrypt = (input, output, password) => {
   // ex: qpdf --password=<PASSWORD> --decrypt <input.pdf> <output.pdf>
   const command = `qpdf --password=${password} --decrypt ${input} ${output} `;
 
-  return new Promise( (resolve, reject) => {
+  return new Promise( async (resolve, reject) => {
     try {
       await ExecuteCommand(command, 'Decrypt pdf');
       resolve({is: true, message: "Decrypt pdf done."});
