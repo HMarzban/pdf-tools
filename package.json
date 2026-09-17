@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/HMarzban/pdf-tools.git",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "scripts": {
     "dev": "nodemon ./index.js  NODE_ENV=development"
   },
